@@ -10,12 +10,12 @@
 namespace HFG;
 
 use HFG\Core\Components\CartIcon;
-
-$icon_type         = CartIcon::should_load_pro_features() ? component_setting( CartIcon::ICON_SELECTOR, 'cart-icon-style1' ) : 'cart-icon-style1';
-$cart_style        = CartIcon::should_load_pro_features() ? component_setting( CartIcon::MINI_CART_STYLE, 'dropdown' ) : 'dropdown';
-$custom_html       = CartIcon::should_load_pro_features() ? component_setting( CartIcon::AFTER_CART_HTML ) : '';
-$expand_enabled    = CartIcon::should_load_pro_features() ? component_setting( CartIcon::CART_FOCUS, 1 ) : true;
-$cart_label        = CartIcon::should_load_pro_features() ? parse_dynamic_tags( component_setting( CartIcon::CART_LABEL ) ) : '';
+$should_load_pro_features = CartIcon::should_load_pro_features();
+$icon_type         = $should_load_pro_features ? component_setting( CartIcon::ICON_SELECTOR, 'cart-icon-style1' ) : 'cart-icon-style1';
+$cart_style        = $should_load_pro_features ? component_setting( CartIcon::MINI_CART_STYLE, 'dropdown' ) : 'dropdown';
+$custom_html       = $should_load_pro_features ? component_setting( CartIcon::AFTER_CART_HTML ) : '';
+$expand_enabled    = $should_load_pro_features ? component_setting( CartIcon::CART_FOCUS, 1 ) : true;
+$cart_label        = $should_load_pro_features ? parse_dynamic_tags( component_setting( CartIcon::CART_LABEL ) ) : '';
 $allowed_post_tags = wp_kses_allowed_html( 'header_footer_grid' );
 $cart_is_empty     = WC()->cart->get_cart_contents_count() === 0;
 
